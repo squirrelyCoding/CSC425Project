@@ -11,7 +11,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// MongoDB connection
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/backend-example';
 
 mongoose.connect(MONGODB_URI)
@@ -22,11 +21,10 @@ mongoose.connect(MONGODB_URI)
     console.error('MongoDB connection error:', error);
   });
 
-// Routes
+
 const messageRoutes = require('./routes/messageRoutes');
 app.use('/api', messageRoutes);
 
-// Default route
 app.get('/', (req, res) => {
   res.json({
     success: true,
